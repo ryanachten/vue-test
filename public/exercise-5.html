@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="exercise-5">
+      <input type="text" v-on:key-up.enter="addTask">
+      <div>
+        <ul v-if="tasks.length && !hideList">
+          <li v-for="task in tasks" :key="task">{{ task }}</li>
+        </ul>
+      </div>
+      <button @click="toggleHideList">{{ buttonCaption }}</button>  
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            tasks: [],
+            hideList: false,
+          }
+        },
+        computed: {
+          buttonCaption() {
+            return `${this.hideList ? "Show" : "Hide"} list (${this.tasks.length})`;
+          }
+        },
+        methods: {
+          addTask(e){
+            const task = e.target.value;
+            if(task) {
+              this.tasks.push(task);
+              e.target.value = "";
+            }
+          },
+          toggleHideList() {
+            this.hideList = !this.hideList;
+          }
+        },
+      }).mount('#exercise-5');
+    </script>
+  </body>
+</html>

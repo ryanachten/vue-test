@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="exercise-1">
+      <p>{{ name }}</p>
+      <p>{{ age }}</p>
+      <p>{{ age + 5 }}</p>
+      <p>Number method: {{ generateRandomNumber() }}</p>
+      <p>Number random: {{ Math.random() }}</p>
+      <img v-bind:src="img" alt="Profile image" />
+      <div>
+        <input type="text" v-bind:value="name" />
+      </div>
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            name: 'Ryan',
+            age: 28,
+            img:
+              'https://avatars1.githubusercontent.com/u/7687396?s=460&u=6fdb99f8ba3d9eecdfff10199562ad6c3b1318b1&v=4',
+          };
+        },
+        methods: {
+          generateRandomNumber() {
+            return Math.random();
+          },
+        },
+      }).mount('#exercise-1');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="exercise-2">
+      <button v-on:click="alert">Show alert</button>
+      <div>
+        <input v-on:keydown="updateText" />
+      </div>
+      <div>
+        <input v-on:keydown.enter="updateText" />
+      </div>
+      <p>{{text}}</p>
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            text: '',
+          };
+        },
+        methods: {
+          alert() {
+            window.alert('Meow');
+          },
+          updateText(e) {
+            this.text = e.target.value;
+          },
+        },
+      }).mount('#exercise-2');
+    </script>
+  </body>
+</html>

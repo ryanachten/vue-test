@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="exercise-4">
+      <p :style="{ backgroundColor }" :class="[cssClass, {invisible: !visible}]">Style me!</p>
+      <p>
+        <span>Add CSS class </span>
+        <input type="text" v-model="cssClass">
+      </p>
+      <p>
+        <span>Add background colour </span>
+        <input type="text" v-model="backgroundColor">
+      </p>
+      <button @click="toggleVisibility">Toggle visibility</button>
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            cssClass: "",
+            backgroundColor: "",
+            visible: true
+          };
+        },
+        methods: {
+          toggleVisibility() {
+            this.visible = !this.visible
+          }
+        },
+      }).mount('#exercise-4');
+    </script>
+    <style>
+      .user1 {
+        color: red
+      }
+      .user2 {
+        color: blue
+      }
+      .invisible {
+        display: none;
+      }
+    </style>
+  </body>
+</html>

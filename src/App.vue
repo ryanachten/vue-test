@@ -1,18 +1,51 @@
 <template>
   <h1>Friends</h1>
   <ul>
-    <friend-contact></friend-contact>
-    <friend-contact></friend-contact>
+    <friend-contact
+      v-for="friend in friends"
+      :id="friend.id"
+      :key="friend.name"
+      :name="friend.name"
+      :phone="friend.phone"
+      :email="friend.email"
+      :is-favourite="friend.isFavourite"
+      @toggle-favourite="toggleFavourite"
+    ></friend-contact>
   </ul>
 </template>
 
-<script>
+<script lang="ts">
 import FriendContact from './components/FriendContact.vue';
 
 export default {
   components: { FriendContact },
   data() {
-    return {};
+    return {
+      friends: [
+        {
+          id: '123abc',
+          name: 'Ryan',
+          phone: '021 022 3056',
+          email: 'test@test.com',
+          isFavourite: false,
+        },
+        {
+          id: '124abd',
+          name: 'Michael',
+          phone: '021 022 3056',
+          email: 'test@test.com',
+          isFavourite: true,
+        },
+      ],
+    };
+  },
+  methods: {
+    toggleFavourite(friendId: string) {
+      const friend = this.friends.find(({ id }) => id === friendId);
+      if (friend) {
+        friend.isFavourite = !friend.isFavourite;
+      }
+    },
   },
 };
 </script>
